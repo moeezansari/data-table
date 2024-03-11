@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Table</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+
+</head>
+<body>
+
+<div class="table-container">
+  <table id="data-table" class="rwd-table">
+    <thead>
+      <tr>
+        <th data-th="Select option">Select option</th>
+        <th data-th="ID">ID</th>
+        <th data-th="Product Name">Product Name</th>
+        <th data-th="Product Title">Product Title</th>
+        <th data-th="Product Description">Product Description</th>
+        <th data-th="Product Vendor">Product Vendor</th>
+        <th data-th="In Stock">In Stock</th>
+        <th data-th="Buying Price">Buying Price</th>
+        <th data-th="Sale Price">Sale Price</th>
+        <th data-th="Purchase Quantity">Purchase Quantity</th>
+        <th data-th="Product Type">Product Type</th>
+        <th data-th="Shipping Rates">Shipping Rates</th>
+        <th data-th="Refill Limit">Refill Limit</th>
+        <th data-th="Product Location Address">Product Location Address</th>
+        <th data-th="Actions">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="checkbox" name="" id=""></td>
+        <td>1</td>
+        <td>Laptop</td>
+        <td>Dell XPS 15</td>
+        <td>Powerful laptop for gaming and professional use</td>
+        <td>Dell</td>
+        <td>50</td>
+        <td>$1200</td>
+        <td>$1500</td>
+        <td>10</td>
+        <td>Electronics</td>
+        <td>$20</td>
+        <td>5</td>
+        <td class="add-one">123 Main St, Anytown, USA</td>
+        <td>
+          <button>Add Vendor</button>
+          <button>Add Products</button>
+          <button>Edit Products</button>
+        </td>
+      </tr><tr>
+        <td><input type="checkbox" name="" id=""></td>
+        <td>2</td>
+        <td>Smartphone</td>
+        <td>iPhone 12</td>
+        <td>Latest iPhone with advanced features</td>
+        <td>Apple</td>
+        <td>100</td>
+        <td>$900</td>
+        <td>$1100</td>
+        <td>20</td>
+        <td>Electronics</td>
+        <td>$15</td>
+        <td>10</td>
+        <td>456 Elm St, Anytown, USA</td>
+        <td>
+          <button>Add Vendor</button>
+          <button>Add Products</button>
+          <button>Edit Products</button>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="" id=""></td>
+        <td>3</td>
+        <td>Headphones</td>
+        <td>Sony WH-1000XM4</td>
+        <td>Noise-canceling headphones with superior sound quality</td>
+        <td>Sony</td>
+        <td>80</td>
+        <td>$250</td>
+        <td>$300</td>
+        <td>15</td>
+        <td>Electronics</td>
+        <td>$10</td>
+        <td>8</td>
+        <td>789 Oak St, Anytown, USA</td>
+        <td>
+          <button>Add Vendor</button>
+          <button>Add Products</button>
+          <button>Edit Products</button>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="" id=""></td>
+        <td>4</td>
+        <td>Book</td>
+        <td>The Great Gatsby</td>
+        <td>Classic novel by F. Scott Fitzgerald</td>
+        <td>Random House</td>
+        <td>120</td>
+        <td>$10</td>
+        <td>$15</td>
+        <td>30</td>
+        <td>Books</td>
+        <td>$5</td>
+        <td>20</td>
+        <td>321 Pine St, Anytown, USA</td>
+        <td>
+          <button>Add Vendor</button>
+          <button>Add Products</button>
+          <button>Edit Products</button>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="" id=""></td>
+        <td>5</td>
+        <td>Camera</td>
+        <td>Canon EOS Rebel T7i</td>
+        <td>Entry-level DSLR camera for photography enthusiasts</td>
+        <td>Canon</td>
+        <td>60</td>
+        <td>$600</td>
+        <td>$700</td>
+        <td>25</td>
+        <td>Electronics</td>
+        <td>$15</td>
+        <td>12</td>
+        <td>987 Maple St, Anytown, USA</td>
+        <td>
+          <button>Add Vendor</button>
+          <button>Add Products</button>
+          <button>Edit Products</button>
+        </td>
+    </tr>
+    
+    </tbody>
+  </table>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const headers = document.querySelectorAll("#data-table th");
+
+    headers.forEach(header => {
+      header.addEventListener("click", () => {
+        const table = header.closest("table");
+        const headerIndex = Array.prototype.indexOf.call(header.parentNode.children, header);
+        const rows = Array.from(table.querySelectorAll("tbody tr"));
+
+        let sortedRows;
+
+        if (headerIndex === 2) { 
+          sortedRows = rows.sort((a, b) => {
+            const aValue = a.cells[headerIndex].textContent.trim();
+            const bValue = b.cells[headerIndex].textContent.trim();
+            return aValue.localeCompare(bValue);
+          });
+        } else {
+          sortedRows = rows.sort((a, b) => {
+            const aValue = a.cells[headerIndex].textContent.trim();
+            const bValue = b.cells[headerIndex].textContent.trim();
+            return compareValues(aValue, bValue);
+          });
+        }
+
+        if (header.classList.contains("asc")) {
+          sortedRows.reverse();
+          header.classList.remove("asc");
+          header.classList.add("desc");
+        } else {
+          header.classList.remove("desc");
+          header.classList.add("asc");
+        }
+
+        const tbody = table.querySelector("tbody");
+        tbody.innerHTML = "";
+        tbody.append(...sortedRows);
+      });
+    });
+
+    function compareValues(a, b) {
+      if (isNaN(a) || isNaN(b)) {
+        return a.localeCompare(b, undefined, { numeric: true });
+      } else {
+        return parseFloat(a) - parseFloat(b);
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
