@@ -1,12 +1,12 @@
 *{
     margin: 0;
-    padding: 0
+    padding: 0;
   }
   
 body {
     font-family: Arial, sans-serif;
-    /* margin: 0;
-    padding: 0; */
+    margin: 0;
+    padding: 0; 
   }
 
   
@@ -25,8 +25,22 @@ body {
     width: 100%;
     border-collapse: collapse;
     border-radius: 10px;
-    overflow: hidden
+    overflow: hidden;
   }
+  th{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+  }
+  .action-icons{
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    border-collapse: collapse;
+    mix-blend-mode: multiply;
+    border: none;
+  }
+
   
   #data-table th,
   #data-table td {
@@ -35,14 +49,11 @@ body {
     text-align: center;
   }
 
-  button {
-    background-color: rgb(29, 134, 112);
-    margin-top: 15px;
-    /* margin-left: 0px; */
-    padding: 8px;
-    border-radius: 5px;
-    font-size: 14px;
-    border-style: solid;
+
+  img{
+    height: 30px;
+    width: 30px;
+    
   }
   
   thead {
@@ -52,10 +63,6 @@ body {
   #data-table th {
     background-color: #1681af;
   }
-
-  /* .add-one {
-    margin-top: px;
-  } */
   
   #data-table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -65,27 +72,5 @@ body {
     #data-table {
       border: 0;
     }
-  
-    /* #data-table thead {
-      display: none;
-    } */
-  
-    /* #data-table tbody tr {
-      display: block;
-      border: 1px solid #ccc;
-      margin-bottom: 10px;
-      border-radius: 10px;
-    } */
-  
-    /* #data-table tbody td {
-      display: block;
-      text-align: left;
-      padding: 10px;
-    } */
-  
-    /* #data-table tbody td:before {
-      content: attr(data-label);
-      font-weight: bold;
-    } */
   }
   
